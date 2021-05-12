@@ -1,8 +1,5 @@
-import Vue from 'vue'
-import VueRouter, { RouteConfig } from 'vue-router'
+import { RouteConfig, createRouter, createWebHashHistory } from 'vue-router';
 import Home from '../views/Home.vue'
-
-Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
@@ -11,16 +8,25 @@ const routes: Array<RouteConfig> = [
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
+    path: '/list/:type',
+    name: 'List',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/List.vue')
+  },
+  {
+    path: '/detail/:type',
+    name: 'Detail',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/Detail.vue')
   }
 ]
 
-const router = new VueRouter({
+const router = createRouter({
+  history: createWebHashHistory(),
   routes
 })
 
